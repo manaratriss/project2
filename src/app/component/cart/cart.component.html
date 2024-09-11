@@ -1,0 +1,38 @@
+ 
+
+ <div class="bg-main-light rounded-4 shadow p-4 my-2 w-75 mx-auto">
+  <div class="d-flex align-items-center justify-content-between">
+    <h2 class="h2 text-center">Shop cart : </h2>
+     
+    <button (click)="clearItem()" class=" btn btn-outline-danger btn-sm" >Clear Cart</button>
+  </div>
+  <h5 class="text-main">total cart price:{{myCart.data.totalCartPrice | currency :'GBP'}}</h5>
+
+  @for (product of myCart.data.products; track $index) {
+
+    <div class="row mb-1 border-bottom">
+        <div class="col-md-1">
+            <img [src]="product.product.imageCover" class="w-100" [alt]="product.product.title">
+        </div>
+
+        <div class="col-md-11 d-flex align-items-center justify-content-between">
+            <div>
+            <h3>{{product.product.title}}</h3>
+            <p class="text-main m-0">Price : {{product.price}}</p>
+            <button (click)="removeItem(product.product._id)" class="text-danger btn p-0"><i class="fa-solid fa-trash"></i></button>
+            <!-- <button class=" fa-solid fa-trash cr btn p-0" (click)="removeItem(product.product._id)"></button> -->
+            </div>
+           
+            <div class="d-flex align-items-center gap-2">
+          <span class="text-main cursor-pointer"> <i class="fa-solid fa-plus-circle fa-2xl" (click)="updateQuantity(product.product._id,product.count+1)"></i></span>
+          <span >{{product.count}}</span>
+            <span class="text-main cursor-pointer"><i class="fa-solid fa-minus-circle fa-2xl"(click)="updateQuantity(product.product._id,product.count-1)"></i></span>
+            </div>   
+        </div>
+
+    </div>
+  }
+
+  <button  [routerLink]="['/order' , myCart.cartId]" class="btn-main mt-2" >orders</button>
+
+</div>

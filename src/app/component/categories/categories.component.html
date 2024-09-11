@@ -1,0 +1,18 @@
+ <section>
+    <h2 class="text-main text-center  m-2">popular categories:</h2>
+    <div class="row">
+    @for(cart of categoriesList; track cart._id) {
+      <div class="col-md-4">
+        <div class="cart">
+            <div class="product p-2">
+                <img [src]="cart.image"class="w-100" height="250px" [alt]="cart.name">
+                <h3 class="small text-center p-1">{{cart.name| uppercase}}</h3>
+            </div>
+        </div>
+      </div>
+    }
+    </div>
+ </section>
+
+
+  
